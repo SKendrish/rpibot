@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org.wiki.xacro">
+
+    <xacro:include filename="rpibot_colors.xacro"/>
+
+    <!-- BASE LINK -->
+
+    <link name="base_link">
+
+    </link>
+
+    <!-- CHASSIS LINK -->
+
+    <xacro:property name="radius" value="0.095" />
+    <xacro:property name="bodylen" value="0.065" />
+
+    <joint name="chassis_joint" type="fixed">
+        <parent link ="base_link"/>
+        <child link="chassis"/>
+        <origin xyz="0 0 0.023"/>
+    </joint>
+
+    <link name="chassis">
+        <visual>
+            <origin xyz="0 0 0.0325"/>
+            <geometry>
+                <box size="0.06 0.200 0.065"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <visual>
+            <origin xyz=".03 0 0.0325"/>
+            <geometry>
+                <cylinder radius="${radius}" length="${bodylen}"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+        <visual>
+            <origin xyz="-.03 0 0.0325"/>
+            <geometry>
+                <cylinder radius="${radius}" length="${bodylen}"/>
+            </geometry>
+            <material name="white"/>
+        </visual>
+    </link>
+
+    <!-- LEFT WHEEL LINK -->
+
+    <!-- RIGHT WHEEL LINK -->
+
+</robot>
