@@ -4,6 +4,13 @@
     <xacro:include filename="rpibot_colors.xacro"/>
     <xacro:include filename="inertial_macros.xacro"/>
 
+    <xacro:property name="robot_length" value="0.250"/>
+    <xacro:property name="robot_width" value="0.190"/>
+    <xacro:property name="robot_height" value="0.065"/>
+    <xacro:property name="wheel_radius" value="0.035"/>
+    <xacro:property name="wheel_thickness" value="0.020"/>
+    <xacro:property name="wheel_base" value="0.150"/>
+
     <!-- BASE LINK -->
 
     <link name="base_link">
@@ -12,17 +19,10 @@
 
     <!-- CHASSIS LINK -->
 
-    <xacro:property name="robot_length" value="0.250"/>
-    <xacro:property name="robot_width" value="0.190"/>
-    <xacro:property name="robot_height" value="0.065"/>
-    <xacro:property name="wheel_radius" value="0.035"/>
-    <xacro:property name="wheel_thickness" value="0.020"/>
-    <xacro:property name="wheel_base" value="0.150"/>
-
     <joint name="chassis_joint" type="fixed">
         <parent link ="base_link"/>
         <child link="chassis"/>
-        <origin xyz="-${robot_length/2} 0 -.023"/>
+        <origin xyz="-${robot_length/2} 0 0.012"/>
     </joint>
 
     <link name="chassis">
@@ -75,7 +75,7 @@
     <joint name="left_wheel_joint" type="continuous">
         <parent link ="base_link"/>
         <child link="left_wheel"/>
-        <origin xyz="0 ${wheel_base/2} 0" rpy="-${pi/2} 0 0"/>
+        <origin xyz="0 ${wheel_base/2} ${wheel_radius}" rpy="-${pi/2} 0 0"/>
         <axis xyz="0 0 1"/>
     </joint>
 
@@ -101,7 +101,7 @@
     <joint name="right_wheel_joint" type="continuous">
         <parent link ="base_link"/>
         <child link="right_wheel"/>
-        <origin xyz="0 -${wheel_base/2} 0" rpy="${pi/2} 0 0"/>
+        <origin xyz="0 -${wheel_base/2} ${wheel_radius}" rpy="${pi/2} 0 0"/>
         <axis xyz="0 0 -1"/>
     </joint>
 
