@@ -7,6 +7,7 @@ from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import LaunchConfiguration, Command, PathJoinSubstitution, FindExecutable
 from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
+from launch_ros.descriptions import ParameterValue
 
 import xacro
 
@@ -16,20 +17,16 @@ def generate_launch_description():
     # Check if we're told to use sim time
     use_sim_time = LaunchConfiguration("use_sim_time")
 
-    # Load xacro file
-    robot_description_content = Command(
-        [
-            PathJoinSubstitution([FindExecutable(name="xacro")]),
-            " ",
-            PathJoinSubstitution(
-                [
-                   FindPackageShare("rpibot"),
-                   "description",
-                   "rpibot.urdf.xacro"
-                ]
-           ) 
-        ]
-    )
+    # Generate urdf from xacro file
+    path_to_xacro = PathJoinSubstitution([
+        FindPackageShare("rpibot"),
+        "description",
+        "rpibot.urdf.xacro"
+    ])
+    robot_description_content = ParameterValue(
+        Command(["xacro ", path_to_xacro]),
+        value_type=str
+        )
 
     robot_description = {"robot_description": robot_description_content}
     
@@ -40,7 +37,6 @@ def generate_launch_description():
         output="screen",
         parameters=[robot_description, {"use_sim_time": use_sim_time}]
     )
-
 
     # Launch!
     return LaunchDescription([
