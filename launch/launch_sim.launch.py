@@ -50,7 +50,7 @@ def generate_launch_description():
             ])
         ]),
         launch_arguments={
-            "gz_args": world_path,
+            "gz_args": ["-r -v v4 empty.sdf"],
             "use_sim_time": "True",
             "on_exit_shutdown": "True"
         }.items()
