@@ -28,6 +28,11 @@ def generate_launch_description():
         "config",
         "gz_bridge.yaml"
     ])
+    rviz_config_file = PathJoinSubstitution([
+        FindPackageShare(package_name),
+        "config",
+        "drive_bot.rviz"
+    ])
 
     # Include roboty state publisher launch file and urdf
     rsp = IncludeLaunchDescription(
@@ -56,6 +61,14 @@ def generate_launch_description():
         }.items()
     )
 
+    rviz2 = Node(
+        package="rviz2",
+        executable="rviz2",
+        name="rviz2",
+        output="screen",
+        arguments=["-d", rviz_config_file],
+    )
+
     gazebo_bridge = Node(
         package=gazebo_brdige_pkg,
         executable="parameter_bridge",
@@ -80,5 +93,6 @@ def generate_launch_description():
         rsp,
         gazebo,
         spawn_entity,
-        gazebo_bridge
+        gazebo_bridge,
+        rviz2
     ])
