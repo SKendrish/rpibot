@@ -5,7 +5,7 @@ from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.substitutions import FindPackageShare
 from launch.substitutions import PathJoinSubstitution
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, TimerAction
 from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 
@@ -88,11 +88,16 @@ def generate_launch_description():
                    "-y", "0.0",
                    "-z", "1.0"
     ])
+
+    delay_action = TimerAction(
+        period=5.0,
+        actions=[rviz2]
+    )
     
     return LaunchDescription([
         rsp,
         gazebo,
         spawn_entity,
         gazebo_bridge,
-        rviz2
+        delay_action
     ])

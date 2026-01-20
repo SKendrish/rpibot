@@ -17,6 +17,12 @@ def generate_launch_description():
     # Check if we're told to use sim time
     use_sim_time = LaunchConfiguration("use_sim_time")
 
+    urdf_file = PathJoinSubstitution([
+        FindPackageShare("rpibot"),
+        'description',
+        'robot_description.urdf'
+    ]) 
+
     # Generate urdf from xacro file
     path_to_xacro = PathJoinSubstitution([
         FindPackageShare("rpibot"),
@@ -29,6 +35,8 @@ def generate_launch_description():
         )
 
     robot_description = {"robot_description": robot_description_content}
+
+    # robot_description = Command(['cat ', urdf_file])
     
     # Create a robot_state_publisher node
     node_robot_state_publisher = Node(

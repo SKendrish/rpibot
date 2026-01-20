@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <link name="base_link">
+
+  </link>
+  <link
+    name="chassis_link">
+    <inertial>
+      <origin
+        xyz="1.89291834099631E-05 -5.21505606329551E-17 0.0261554583179408"
+        rpy="0 0 0" />
+      <mass
+        value="0.820453668355261" />
+      <inertia
+        ixx="0.00343745597720794"
+        ixy="-1.33118464296835E-18"
+        ixz="3.3239094876414E-08"
+        iyy="0.00376355614223957"
+        iyz="-3.64969624858544E-20"
+        izz="0.00716840725205158" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/chassis_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/chassis_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="chassis_joint" type="fixed">
+    <parent link = "base_link"/>
+    <child link = "chassis_link"/>
+    <origin
+      xyz="0 0 -0.0155"/>
+  </joint>
+
+  <link
+    name="left_wheel_link">
+    <inertial>
+      <origin
+        xyz="1.16035451535532E-18 6.93889390390723E-18 -0.00268837094059923"
+        rpy="0 0 0" />
+      <mass
+        value="0.0472961083388951" />
+      <inertia
+        ixx="2.11909458848976E-05"
+        ixy="-2.64101464026675E-24"
+        ixz="-1.58457368331281E-21"
+        iyy="2.11909458848976E-05"
+        iyz="-4.44100545083484E-21"
+        izz="3.991342842481E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/left_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/left_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="left_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="6.2609E-05 0.09 0.0155"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="chassis_link" />
+    <child
+      link="left_wheel_link" />
+    <axis
+      xyz="0 0 1" />
+    <dynamics
+      damping="1"
+      friction="1" />
+  </joint>
+
+  <link
+    name="right_wheel_link">
+    <inertial>
+      <origin
+        xyz="-8.43242183162668E-19 -3.46944695195361E-18 -0.00268837094059922"
+        rpy="0 0 0" />
+      <mass
+        value="0.0472961083388952" />
+      <inertia
+        ixx="2.11909458848976E-05"
+        ixy="2.43960739247573E-25"
+        ixz="-2.70461141026291E-21"
+        iyy="2.11909458848976E-05"
+        iyz="4.48416145737291E-21"
+        izz="3.991342842481E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/right_wheel_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.752941176470588 0.752941176470588 0.752941176470588 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/right_wheel_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="right_wheel_joint"
+    type="continuous">
+    <origin
+      xyz="6.2609E-05 -0.09 0.0155"
+      rpy="1.5708 0 0" />
+    <parent
+      link="chassis_link" />
+    <child
+      link="right_wheel_link" />
+    <axis
+      xyz="0 0 -1" />
+    <dynamics
+      damping="1"
+      friction="1" />
+  </joint>
+
+  <link
+    name="laser_frame">
+    <inertial>
+      <origin
+        xyz="0 3.38181918277552E-34 -0.00900000000000002"
+        rpy="0 0 0" />
+      <mass
+        value="0.069272118011655" />
+      <inertia
+        ixx="2.3084933327384E-05"
+        ixy="-6.627262350311E-53"
+        ixz="-7.99343462295646E-38"
+        iyy="2.3084933327384E-05"
+        iyz="4.21678399541948E-38"
+        izz="4.24291722821387E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/lidar_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.101960784313725 0.101960784313725 0.101960784313725 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/lidar_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="laser_joint"
+    type="fixed">
+    <origin
+      xyz="0.0430626093076691 0 0.1076"
+      rpy="0 0 0" />
+    <parent
+      link="chassis_link" />
+    <child
+      link="laser_frame" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  
+  <link
+    name="fr_caster_link">
+    <inertial>
+      <origin
+        xyz="2.4980018054066E-16 -2.28983498828939E-16 0.00173996480983857"
+        rpy="0 0 0" />
+      <mass
+        value="0.00185582478601394" />
+      <inertia
+        ixx="4.88878926195383E-08"
+        ixy="-8.68097383355364E-24"
+        ixz="-7.56774428886561E-24"
+        iyy="4.88878926195383E-08"
+        iyz="7.26988457651607E-24"
+        izz="8.72776470384957E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/fr_caster_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/fr_caster_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fr_caster_joint"
+    type="fixed">
+    <origin
+      xyz="0.100062609307669 -0.05 -0.0140000000000002"
+      rpy="0 0 0" />
+    <parent
+      link="chassis_link" />
+    <child
+      link="fr_caster_link" />
+    <axis
+      xyz="0 0 0" />
+    <dynamics
+      damping="1E-06"
+      friction="1E-06" />
+  </joint>
+  <link
+    name="fl_caster_link">
+    <inertial>
+      <origin
+        xyz="-2.35922392732846E-16 2.35922392732846E-16 0.00173996480983857"
+        rpy="0 0 0" />
+      <mass
+        value="0.00185582478601395" />
+      <inertia
+        ixx="4.88878926195383E-08"
+        ixy="-6.4080026359354E-24"
+        ixz="-4.02583502590903E-24"
+        iyy="4.88878926195382E-08"
+        iyz="6.03349241917912E-24"
+        izz="8.72776470384956E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/fl_caster_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/fl_caster_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="fl_caster_joint"
+    type="fixed">
+    <origin
+      xyz="0.10006 0.05 -0.014"
+      rpy="0 0 0" />
+    <parent
+      link="chassis_link" />
+    <child
+      link="fl_caster_link" />
+    <axis
+      xyz="0 0 0" />
+    <dynamics
+      damping="1E-06"
+      friction="1E-06" />
+  </joint>
+  <link
+    name="br_caster_link">
+    <inertial>
+      <origin
+        xyz="2.08166817117217E-16 -2.42861286636753E-16 0.00173996480983857"
+        rpy="0 0 0" />
+      <mass
+        value="0.00185582478601394" />
+      <inertia
+        ixx="4.88878926195383E-08"
+        ixy="-1.37377911142332E-23"
+        ixz="1.36549320788026E-23"
+        iyy="4.88878926195381E-08"
+        iyz="1.98579367826622E-24"
+        izz="8.72776470384955E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/br_caster_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/br_caster_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="br_caster_joint"
+    type="fixed">
+    <origin
+      xyz="-0.099937 -0.05 -0.014"
+      rpy="0 0 0" />
+    <parent
+      link="chassis_link" />
+    <child
+      link="br_caster_link" />
+    <axis
+      xyz="0 0 0" />
+    <dynamics
+      damping="1E-06"
+      friction="1E-06" />
+  </joint>
+  <link
+    name="bl_caster_link">
+    <inertial>
+      <origin
+        xyz="-2.35922392732846E-16 2.28983498828939E-16 0.00173996480983857"
+        rpy="0 0 0" />
+      <mass
+        value="0.00185582478601394" />
+      <inertia
+        ixx="4.88878926195383E-08"
+        ixy="-9.09078648366105E-24"
+        ixz="7.4144911740129E-24"
+        iyy="4.88878926195383E-08"
+        iyz="-7.28785172670583E-24"
+        izz="8.72776470384957E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/bl_caster_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.894117647058823 0.894117647058823 0.894117647058823 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="file:///home/steph/dev_ws/src/rpibot/meshes/bl_caster_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="bl_caster_joint"
+    type="fixed">
+    <origin
+      xyz="-0.0999373906923307 0.0500000000000001 -0.0140000000000002"
+      rpy="0 0 0" />
+    <parent
+      link="chassis_link" />
+    <child
+      link="bl_caster_link" />
+    <axis
+      xyz="0 0 0" />
+    <dynamics
+      damping="1E-06"
+      friction="1E-06" />
+  </joint>
+</robot>
